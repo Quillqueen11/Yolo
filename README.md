@@ -15,12 +15,12 @@
 | **Level** | 🟢 L1 — Full Operation |
 | **AI API** | OK |
 | **Tools** | OK |
-| **Disk** | 13% |
-| **Skills** | 27 modules |
-| **Chroma** | 2 entries |
+| **Disk** | 12% |
+| **Skills** | 33 modules |
+| **Chroma** | 245 entries |
 | **Tests** | 8/8 PASSED |
-| **Files** | 63 |
-| **Updated** | 2026-05-03 10:59 UTC |
+| **Scripts** | 28 scripts |
+| **Updated** | 2026-05-04 05:00 UTC |
 
 ---
 
@@ -91,9 +91,9 @@ python3 .bootstrap/restore.py
 
 ---
 
-## 📊 Skills (27 Total)
+## 📊 Skills (33 Total)
 
-security_expert | survival_mode | model_intelligence | chain_of_thought | context_compress | pdf_reader | reflex_boost | cron | browser_cdp | channel_message | docx | xlsx | news | himalaya | mythos_scaffold | natural_human_comm | make_plan | multi_agent_collaboration | chat_with_agent | QA_source_index | guidance | file_reader | pdf | pptx | browser_visible | dingtalk_channel | kimiim_deploy
+security_expert | survival_mode | model_intelligence | chain_of_thought | context_compress | pdf_reader | reflex_boost | cron | browser_cdp | channel_message | docx | xlsx | news | himalaya | mythos_scaffold | natural_human_comm | make_plan | multi_agent_collaboration | chat_with_agent | QA_source_index | guidance | file_reader | pdf | pptx | browser_visible | dingtalk_channel | kimiim_deploy | image_recognition | deep_content_analysis | content_agency | youtube_analytics | youtube_search | youtube_scraper
 
 ---
 
