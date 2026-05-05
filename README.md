@@ -1,120 +1,104 @@
-# 🦊 Quill AI Assistant
+# Quill — AI-Powered IDX Corporate Action Monitor
 
-> **AI Assistant yang bisa survive sendiri — bahkan kalau token API habis atau VPS mati.**
-
-![Status](https://img.shields.io/badge/Status-L1-Full-Operation-brightgreen)
-![Skills](https://img.shields.io/badge/Skills-27-Modules-blue)
-![Survival](https://img.shields.io/badge/Survival-L1-red)
+Sistem monitoring keterbukaan informasi IDX dengan pipeline berita otomatis, quality gate, dan WordPress publishing.  
+**Ditenagai 5 Evolution Skills** — self-improving, autonomous, immortal.
 
 ---
 
-## 📊 System Status
+## 📊 Current Status
 
-| Metric | Value |
-|--------|-------|
-| **Level** | 🟢 L1 — Full Operation |
-| **AI API** | OK |
-| **Tools** | OK |
+| System | Status |
+|--------|--------|
+| **Level** | L1 (FULL Operation) |
 | **Disk** | 12% |
-| **Skills** | 33 modules |
-| **Chroma** | 245 entries |
-| **Tests** | 8/8 PASSED |
-| **Scripts** | 28 scripts |
-| **Updated** | 2026-05-04 05:00 UTC |
+| **Last Check** | 2026-05-05 05:40 WIB |
+| **AI API** | ✅ OK |
+| **Tools** | ✅ OK |
 
----
+## 🧠 Capabilities
 
-## 🎯 Quill Itu Apa?
+| Module | Count |
+|--------|-------|
+| **Skills** | 42 total (+5 evolution skills) |
+| **Scripts** | 29 Python scripts |
+| **Docs** | 10 documentation files |
+| **Chroma Entries** | 533+ |
+| **News Articles** | 6 published |
 
-AI assistant yang bisa:
-- Beroperasi otomatis tanpa pengawasan
-- Self-recovery kalau ada yang gagal
-- Hemat resources (token, storage)
-- Security assessment (authorized)
-- Real-time monitoring (IDX disclosures)
+## 🔄 Running Services
 
----
+| Service | Schedule | Status |
+|---------|----------|--------|
+| IDX Monitor v2 | Every 2h (06:00-22:00 WIB) | ✅ Active |
+| Self-Improve | Every 6h | ✅ Active |
+| Daily Memory Update | Daily 07:00 | ✅ Active |
+| System Maintenance | Every 12h | ✅ Active |
+| Autonomous Health | Every 6h | ✅ Active |
+| Resilience Heal | Every 6h | ✅ Active |
+| Self-Evolve | Weekly (Sun 03:00) | ✅ Active |
 
-## 🚀 Install
+## 🧬 Evolution Skills — Live Forever System
 
-```bash
-git clone https://github.com/Quillqueen11/Yolo.git
-cd Yolo
-pip install curl_cffi PyMuPDF
-python3 survival/check_health.py
+| Skill | Size | Fungsi |
+|-------|------|--------|
+| **`self_evolve`** | 10.8KB | Baca kode sendiri → deteksi 670+ issues → fix otomatis |
+| **`autonomous_agent`** | 11.7KB | Self-scheduling, anomaly detection, proactive reporting |
+| **`persistent_memory`** | 11.1KB | 4-layer memory (working/episodic/semantic/procedural) via Chroma |
+| **`multi_modal_vision`** | 10.2KB | OCR, image/chart/video analysis |
+| **`resilience_core`** | 13.3KB | API failover, disk cleanup, git sync, state journaling |
+| **Total** | **57KB** | 5 engines fully implemented |
+
+## ⚙️ Integration Layers (Aksara Baru Architecture)
+
+```
+LAYER 1: Data Collection   → IDX API, YouTube, Tavily, Browser
+LAYER 2: Fast Draft        → Draft pipeline (LLM)
+LAYER 3: Quality Gate      → 6 checks: length, structure, fakta, compliance, duplicate, tone
+LAYER 4: Polish & Publish  → Content Agency style → WordPress
 ```
 
----
+## 📁 Key Files
 
-## 📁 Struktur
+- `scripts/idx_monitor_v2.py` — Main monitoring pipeline
+- `scripts/demo_news_pipeline.py` — 4-layer news demo
+- `survival/` — Survival mode (backup, recovery, health)
+- `data/idx_action_state.json` — Deduplication state
+- `data/chroma_db/` — Vector DB for dedup
+- `skills/` — 42 skills including:
+  - `self_evolve/` — Auto-improve own code
+  - `autonomous_agent/` — Self-scheduling
+  - `persistent_memory/` — Long-term memory
+  - `resilience_core/` — Never-die system
+  - `multi_modal_vision/` — See images/videos
+  - `auto_news_pipeline/` — News pipeline
+  - `quality_gate/` — Content QC
+  - `wordpress_publisher/` — WP publishing
 
-```
-Yolo/
-├── .bootstrap/      # Recovery system (MEMORY, SOUL, PROFILE backed up)
-├── skills/          # 27 skill modules
-├── scripts/         # Operational scripts
-├── survival/        # Survival mode (L1/L3/L4)
-└── docs/            # Documentation
-```
+## 📝 Recent News Articles
 
----
+| Article | Status |
+|---------|--------|
+| TLKM Buyback Rp1T | ✅ Published |
+| KPIG Q1 Laba +55.8% | ✅ Published |
+| APLN Volatilitas 16% | ✅ Published |
+| BSDE Prapenjualan Rp2.54T | ✅ Published |
+| NUSA Suspensi Seluruh Pasar | ✅ Published |
 
-## 🛡️ Survival Mode
+## 🛡️ System Tests
 
-Bertahan hidup mesmo kalau:
+Last run: `8/8 tests passed` ✅
 
-| Jika... | Quill switch ke... |
-|---------|-------------------|
-| API OK + tools OK | **L1** Full operation |
-| API DOWN, tools OK | **L3** Local scripts only |
-| Everything DOWN | **L4** Emergency shell only |
-
-Auto-recovery setiap failure. No manual intervention needed.
-
----
-
-## 🔧 Commands
-
-```bash
-# Health check
-python3 survival/check_health.py
-
-# Full system test
-python3 survival/test_system.py
-
-# Backup to GitHub
-python3 .bootstrap/backup_state.py
-
-# Restore (jika VPS mati)
-python3 .bootstrap/restore.py
-```
+| Test | Status |
+|------|--------|
+| Health Check | ✅ |
+| Backup System | ✅ |
+| Rule Engine | ✅ |
+| Startup Recovery | ✅ |
+| Data Integrity | ✅ |
+| State Consistency | ✅ |
+| Log System | ✅ |
+| Failure Recovery | ✅ |
 
 ---
 
-## 📊 Skills (33 Total)
-
-security_expert | survival_mode | model_intelligence | chain_of_thought | context_compress | pdf_reader | reflex_boost | cron | browser_cdp | channel_message | docx | xlsx | news | himalaya | mythos_scaffold | natural_human_comm | make_plan | multi_agent_collaboration | chat_with_agent | QA_source_index | guidance | file_reader | pdf | pptx | browser_visible | dingtalk_channel | kimiim_deploy | image_recognition | deep_content_analysis | content_agency | youtube_analytics | youtube_search | youtube_scraper
-
----
-
-## 🛡️ Security (OWASP Top 10)
-
-Built-in payloads: SQLi bypass, NoSQLi, XSS, Command injection, JWT bypass, SSRF, XXE
-
----
-
-## 🔄 Update
-
-```bash
-git pull origin main
-```
-
----
-
-**Maintainer:** quill.queen11@gmail.com
-
----
-
-*Quill — AI yang bisa survive sendiri.* 🦊
-
-_Updated: 2026-05-03 10:59 UTC_
+*Last updated: 2026-05-05 05:40 WIB*
