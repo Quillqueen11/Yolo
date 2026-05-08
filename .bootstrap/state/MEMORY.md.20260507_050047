@@ -36,15 +36,17 @@
 - Filter: EXCLUDE ownership/laporan tahunan/ESG; INCLUDE dividen/buyback/stock split/RUPS
 
 ## System Health & Survival
+- Mode: L1 active (disk 12%, AI API OK)
 - Directory: `survival/` — check_health.py, rule_engine.py, backup.sh (every 6h), startup.py, state.json
 - HEARTBEAT: configured via `HEARTBEAT.md` with 3 periodic tasks (Self-Improve, Daily Memory, IDX Monitor)
 
 ## Evolution Skills (5 New — Live Forever System)
-- **`self_evolve`** — Analyzes files, detects issues. AST-based code analysis, auto-fix, sandbox test before apply
-- **`autonomous_agent`** — Self-scheduling, anomaly detection, proactive reporting. 3 registered tasks (health, heal, self-evolve)
-- **`persistent_memory`** — Chroma DB vector memory. 4 layers: working/episodic/semantic/procedural
-- **`multi_modal_vision`** — OCR (PyMuPDF+tesseract), image analysis, video processing, chart analysis
-- **`resilience_core`** — API failover (Sumopod→OpenRouter), disk auto-cleanup, git auto-sync, state journaling
+- **`self_evolve`** (10.8KB) — Analyzes 78 files, detects 670 issues. AST-based code analysis, auto-fix, sandbox test before apply
+- **`autonomous_agent`** (11.7KB) — Self-scheduling, anomaly detection, proactive reporting. 3 registered tasks (health, heal, self-evolve)
+- **`persistent_memory`** (11.1KB) — Chroma DB vector memory. 4 layers: working/episodic/semantic/procedural. 6 memories stored
+- **`multi_modal_vision`** (10.2KB) — OCR (PyMuPDF+tesseract), image analysis, video processing, chart analysis
+- **`resilience_core`** (13.3KB) — API failover (Sumopod→OpenRouter), disk auto-cleanup, git auto-sync, state journaling
+- **Total**: 57KB across 5 fully-implemented engines
 
 ## Cron Jobs
 - IDX Monitor: `0 6-22/2 * * *` → `scripts/idx_monitor_v2.py`

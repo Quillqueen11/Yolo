@@ -1,9 +1,0 @@
-{
-  "level": "L3",
-  "broken": true,
-  "operational_mode": "LOCAL_ONLY",
-  "last_check": "2026-05-03T08:01:11.201552",
-  "api_ok": false,
-  "tools_ok": true,
-  "storage": "13%"
-}

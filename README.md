@@ -10,8 +10,8 @@ Sistem monitoring keterbukaan informasi IDX dengan pipeline berita otomatis, qua
 | System | Status |
 |--------|--------|
 | **Level** | L1 (FULL Operation) |
-| **Disk** | 12% |
-| **Last Check** | 2026-05-05 05:40 WIB |
+| **Disk** | 14% |
+| **Last Check** | 2026-05-06 00:00 WIB |
 | **AI API** | ✅ OK |
 | **Tools** | ✅ OK |
 
@@ -21,8 +21,8 @@ Sistem monitoring keterbukaan informasi IDX dengan pipeline berita otomatis, qua
 |--------|-------|
 | **Skills** | 42 total (+5 evolution skills) |
 | **Scripts** | 29 Python scripts |
-| **Docs** | 10 documentation files |
-| **Chroma Entries** | 533+ |
+| **Docs** | 13 documentation files |
+| **Chroma Entries** | 634+ |
 | **News Articles** | 6 published |
 
 ## 🔄 Running Services
@@ -101,4 +101,4 @@ Last run: `8/8 tests passed` ✅
 
 ---
 
-*Last updated: 2026-05-05 05:40 WIB*
+*Last updated: 2026-05-06 00:00 WIB*
