@@ -1,235 +1,115 @@
-# ===========================================
-# 🦊 QUILL BOOTSTRAP — Full Recovery Guide
-# ===========================================
+# Quill — AI-Powered IDX Corporate Action Monitor
 
-> **Bagaimana restore Quill 100% dari GitHub kalau VPS hilang atau perlu deploy di server baru.**
-
----
-
-## Apa Itu Bootstrap?
-
-Bootstrap adalah sistem **auto-restore** yang bikin Quill bisa di-deploy ulang 100% dari GitHub. Including:
-
-- ✅ Identity (siapa Quill, siapa Andry)
-- ✅ Memory (riwayat percakapan, keputusan)
-- ✅ Core files (SOUL.md, PROFILE.md, MEMORY.md)
-- ✅ Config template (API keys)
-- ✅ State files (IDX monitor state, survival state)
+Sistem monitoring keterbukaan informasi IDX dengan pipeline berita otomatis, dedup cerdas, dan WordPress publishing.  
+**Ditenagai 5 Evolution Skills + Multi-Agent System** — self-improving, autonomous, immortal.
 
 ---
 
-## Sebelum VPS Mati (Backup)
+## 📊 Current Status
 
-```bash
-cd /app/working/workspaces/default/github/quill
+| System | Status |
+|--------|--------|
+| **Level** | L1 (FULL Operation) |
+| **Disk** | 20% |
+| **Last Check** | 2026-05-08 17:00 WIB |
+| **AI API** | ✅ OK |
+| **Pipeline** | ✅ v4 (240 items in 3s) |
 
-# Jalankan backup script
-python3 .bootstrap/backup_state.py
+## 🧠 Capabilities
 
-# Output:
-# [BOOTSTRAP] === Quill State Backup ===
-# [BOOTSTRAP] ✅ MEMORY.md
-# [BOOTSTRAP] ✅ PROFILE.md
-# [BOOTSTRAP] ✅ SOUL.md
-# [BOOTSTRAP] Backed up 6/6 files
-# [BOOTSTRAP] 🎉 State backup complete!
+| Module | Count |
+|--------|-------|
+| **Skills** | 42 total (+5 evolution skills) |
+| **Scripts** | 30+ Python scripts |
+| **Docs** | 14 documentation files |
+| **Chroma Entries** | 1618+ |
+| **News Articles** | 15+ published |
+| **Multi-Agent Workers** | 5 (filter, tavily, chroma, html2text, format_news) |
+
+## 🔄 Running Services
+
+| Service | Schedule | Status |
+|---------|----------|--------|
+| **IDX Auto-News v4** | Every 2h (06:00-22:00 WIB) | ✅ **NEW** |
+| Self-Improve | Every 6h | ✅ Active |
+| Daily Memory Update | Daily 07:00 | ✅ Active |
+| System Maintenance | Every 12h | ✅ Active |
+| Autonomous Health | Every 6h | ✅ Active |
+| Resilience Heal | Every 6h | ✅ Active |
+| Self-Evolve | Weekly (Sun 03:00) | ✅ Active |
+
+## 🆕 Multi-Agent System
+
+```
+Quill (Leader — LLM) ──→ Agent Workers (0 token, subprocess)
+    │
+    ├── filter    → Rule-based disclosure filter
+    ├── tavily    → Web enrichment (Tavily free tier)
+    ├── chroma    → Vector DB search (past actions)
+    ├── html2text → HTML tag stripper
+    └── format_news → Structured data prep
 ```
 
-Script ini otomatis commit + push ke GitHub kalau credentials tersedia.
+**Penghematan token:** Semua agent worker jalan via subprocess, 0 LLM token.  
+**Saya (Quill) pakai LLM hanya untuk nulis berita dan refine.**
+
+## 🆕 Auto-News Pipeline (v4)
+
+```
+Angka ➡️
+Fetch IDX API (240 items, 3 detik)
+  ➡️ Filter relevansi (5-10 items)
+  ➡️ Cek state + WordPress dedup
+  ➡️ Enrich paralel (Tavily + Chroma)
+  ➡️ Publish draft ke WordPress
+  ➡️ Simpan state (tidak publish ulang)
+```
+
+Keunggulan:
+- Session management (seed main page → bypass Cloudflare)
+- WordPress dedup by emiten code (cek existing posts)
+- Parallel enrich via ThreadPoolExecutor
+- State + WP code tracking (tidak ada duplikasi)
+
+## 📁 Key Files
+
+- `scripts/auto_news_pipeline.py` — **Pipeline utama v4** (fetch → filter → enrich → WP)
+- `skills/quill_agents/agent_worker.py` — **Multi-agent workers** (5 agents, 0 LLM token)
+- `scripts/idx_monitor_v4.py` — Fast fetch-only (240 items in ~3s)
+- `data/idx_action_state.json` — Deduplication state (53 enriched, 16 WP codes)
+- `data/chroma_db/` — Vector DB for dedup
+
+## 📝 Recent News Articles
+
+| Article | Status |
+|---------|--------|
+| TLKM Buyback Rp1T | ✅ Published |
+| KPIG Q1 Laba +55.8% | ✅ Published |
+| APLN Volatilitas 16% | ✅ Published |
+| BSDE Prapenjualan Rp2.54T | ✅ Published |
+| NUSA Suspensi Seluruh Pasar | ✅ Published |
+| INET Dirut & Komisaris Mundur | ✅ Published |
+| IBST Amankan Sub Limit Kredit Rp1T | ✅ Published |
+| SUPR Go Private Rp45.000 | ✅ Published |
+| HILL Saham Anjlok 66% PKPU | ✅ Published |
+| BOAT Tambah Kapal Baru US$22 Juta | ✅ Published |
+| NPGF Kontrak Rp217 Miliar | ✅ Published |
+
+## 🛡️ System Tests
+
+Last run: `8/8 tests passed` ✅
+
+| Test | Status |
+|------|--------|
+| Health Check | ✅ |
+| Backup System | ✅ |
+| Rule Engine | ✅ |
+| Startup Recovery | ✅ |
+| Data Integrity | ✅ |
+| State Consistency | ✅ |
+| Log System | ✅ |
+| Failure Recovery | ✅ |
 
 ---
 
-## Sesudah VPS Mati (Restore)
-
-### Opsi 1: Auto-Restore (Recommended)
-
-```bash
-# Clone repo
-git clone https://github.com/Quillqueen11/Yolo.git
-cd Yolo
-
-# Jalankan auto-restore
-python3 .bootstrap/restore.py
-```
-
-**Output:**
-```
-==================================================
-  🦊 QUILL AUTO-RESTORE
-==================================================
-
- Step 1: Checking Prerequisites
- ✅ Python3: Python 3.11.2
- ✅ Git: git version 2.39.5
-
- Step 2: Restoring from GitHub
- ✅ Repo already cloned
- ✅ Pulled latest changes
-
- Step 3: Restoring Identity Files
- ✅ MEMORY.md
- ✅ SOUL.md
- ✅ PROFILE.md
-
- Step 4: Setting Up Directories
- ✅ /app/working/workspaces/default/data
- ✅ /app/working/workspaces/default/survival/backup
- ...
-
- Step 5: Checking Dependencies
- ✅ curl_cffi
- ✅ PyMuPDF
-
- Step 6: Running System Test
- RESULT: 8/8 tests passed
- 🎉 ALL SYSTEMS OPERATIONAL
-
-==================================================
-  🎉 RESTORE COMPLETE!
-  Quill is ready for operation! 🚀
-==================================================
-```
-
----
-
-### Opsi 2: Manual Restore
-
-```bash
-# 1. Copy identity files
-cp .bootstrap/MEMORY.md ../MEMORY.md
-cp .bootstrap/SOUL.md ../SOUL.md
-cp .bootstrap/PROFILE.md ../PROFILE.md
-
-# 2. Setup config
-cp .bootstrap/config.env.example ../.env
-nano ../.env  # Edit dengan API keys kamu
-
-# 3. Create directories
-mkdir -p ../data ../survival/backup ../survival/logs
-
-# 4. Test
-python3 survival/test_system.py
-```
-
----
-
-## File Bootstrap
-
-```
-.bootstrap/
-├── MEMORY.md              ← Long-term memory (backup before VPS die)
-├── SOUL.md                ← Core identity
-├── PROFILE.md             ← User profile
-├── config.env.example     ← Config template (fill API keys)
-├── bootstrap.sh           ← Shell script (legacy)
-├── backup_state.py       ← Auto-backup to GitHub
-└── restore.py            ← Auto-restore from GitHub
-```
-
----
-
-## Config Setup (.env)
-
-```bash
-# Copy template
-cp .bootstrap/config.env.example .env
-
-# Edit dengan API keys kamu
-nano .env
-
-# Isi yang diperlukan:
-# - SUMOPOD_API_KEY
-# - TAVILY_API_KEY
-# - TELEGRAM_BOT_TOKEN
-```
-
-**Template:**
-```env
-# Primary AI API
-SUMOPOD_API_KEY=your_key_here
-SUMOPOD_BASE_URL=https://ai.sumopod.com
-
-# Web Search
-TAVILY_API_KEY=tvly-dev-your_key_here
-
-# Telegram
-TELEGRAM_BOT_TOKEN=your_bot_token
-USER_CHAT_ID=924535843
-USER_NAME=Andry
-```
-
----
-
-## Cron untuk Auto-Backup
-
-Tambahkan ke crontab untuk auto-backup setiap jam:
-
-```bash
-# Edit crontab
-crontab -e
-
-# Tambah line:
-0 * * * * cd /app/working/workspaces/default/github/quill && python3 .bootstrap/backup_state.py >> /var/log/quill_backup.log 2>&1
-```
-
----
-
-## Troubleshooting
-
-### "bootstrap.sh not found"
-
-```bash
-# Pastikan kamu di direktori Yolo
-cd Yolo
-ls -la .bootstrap/
-```
-
-### "Permission denied"
-
-```bash
-chmod +x .bootstrap/bootstrap.sh
-chmod +x .bootstrap/backup_state.py
-chmod +x .bootstrap/restore.py
-```
-
-### "Module not found"
-
-```bash
-pip install curl_cffi PyMuPDF chromadb
-```
-
-### "restore.py failed"
-
-Cek apakah repo sudah benar di-clone:
-
-```bash
-ls -la .bootstrap/MEMORY.md
-# Should exist
-```
-
----
-
-## Summary
-
-| Action | Command |
-|--------|---------|
-| Backup (before VPS die) | `python3 .bootstrap/backup_state.py` |
-| Auto-restore (new VPS) | `python3 .bootstrap/restore.py` |
-| Manual restore | Copy files manually |
-| Test system | `python3 survival/test_system.py` |
-
----
-
-## Level System After Restore
-
-Setelah restore, Quill akan berada di level sesuai kondisi:
-
-| Level | Kondisi | Kemampuan |
-|-------|---------|-----------|
-| **L1** | API OK + tools OK | Full operation |
-| **L3** | API DOWN, tools OK | Local scripts only |
-| **L4** | API DOWN, tools minimal | Emergency mode |
-
----
-
-*Bootstrap ensures Quill never truly dies — clone from GitHub, restore, and he's back.* 🦊
+*Last updated: 2026-05-08 05:19 WIB*

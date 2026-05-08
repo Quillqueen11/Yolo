@@ -11,7 +11,7 @@ Sistem monitoring keterbukaan informasi IDX dengan pipeline berita otomatis, qua
 |--------|--------|
 | **Level** | L1 (FULL Operation) |
 | **Disk** | 14% |
-| **Last Check** | 2026-05-06 00:00 WIB |
+| **Last Check** | 2026-05-08 17:00 WIB |
 | **AI API** | ✅ OK |
 | **Tools** | ✅ OK |
 
