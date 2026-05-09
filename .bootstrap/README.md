@@ -22,7 +22,7 @@ Sistem monitoring keterbukaan informasi IDX dengan pipeline berita otomatis, ded
 | **Skills** | 42 total (+5 evolution skills) |
 | **Scripts** | 30+ Python scripts |
 | **Docs** | 14 documentation files |
-| **Chroma Entries** | 1618+ |
+| **Chroma Entries** | 1651+ |
 | **News Articles** | 15+ published |
 | **Multi-Agent Workers** | 5 (filter, tavily, chroma, html2text, format_news) |
 
@@ -112,4 +112,4 @@ Last run: `8/8 tests passed` ✅
 
 ---
 
-*Last updated: 2026-05-08 05:19 WIB*
+*Last updated: 2026-05-08 17:00 WIB*
