@@ -2,8 +2,8 @@
   "level": "L1",
   "broken": false,
   "operational_mode": "FULL",
-  "last_check": "2026-05-06T00:00:16.205379",
+  "last_check": "2026-05-12T05:20:04.384597",
   "api_ok": true,
   "tools_ok": true,
-  "storage": "14%"
+  "storage": "24%"
 }
