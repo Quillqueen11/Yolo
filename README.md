@@ -10,55 +10,76 @@ Sistem monitoring keterbukaan informasi IDX dengan pipeline berita otomatis, ded
 | System | Status |
 |--------|--------|
 | **Level** | L1 (FULL Operation) |
-| **Disk** | 20% |
-| **Last Check** | 2026-05-09 11:00 WIB |
-| **AI API** | ✅ OK |
-| **IDX Pipeline** | ✅ v4 (240 items in 3s) |
-| **Aksarabaru Pipeline** | ✅ Every hour, 7 categories |
-| **Gen Z Writing Skill** | ✅ v2 — Inverted Pyramid, Anti-AI, Quality Check |
+| **Disk** | 24% |
+| **Last Check** | 2026-05-13 11:20 WIB |
+| **AI API** | ✅ OK (via internal `qwenpaw agents chat`) |
+| **IDX API** | ✅ OK (240 items in ~3s, Cloudflare bypass) |
+| **IDX Pipeline** | ✅ v4 — LLM‑powered KPIG articles + 9 defense layers |
+| **Aksarabaru Pipeline** | ✅ Every hour, 7 categories, Gen Z v2 framework |
+| **Foreign News Pipeline** | ✅ Daily 07:45 & 19:45, enhanced dedup |
+| **Indexing Pipeline** | ✅ Every 8h (IndexNow + Blogsearch + Ping-O-Matic) |
+| **Aksarabaru Indexing** | ✅ Every 4h (Google + Bing + Yandex) |
+| **Survival Mode** | ✅ 8/8 tests passed |
 
 ## 🧠 Capabilities
 
 | Module | Count |
 |--------|-------|
-| **Skills** | 43 total (+5 evolution skills) |
-| **Scripts** | 30+ Python scripts |
+| **Skills** | 44 total (+5 evolution skills) |
+| **Scripts** | 45+ Python scripts |
 | **Docs** | 15 documentation files |
 | **Chroma Entries** | 1651+ |
-| **News Articles (investor-idn)** | 16+ published |
-| **News Articles (aksarabaru)** | 8+ published |
+| **Articles (investor-idn)** | 50+ published |
+| **Articles (aksarabaru)** | 40+ published |
 | **Multi-Agent Workers** | 5 (filter, tavily, chroma, html2text, format_news) |
+| **Cron Jobs** | 8 active (zero schedule clashes) |
 
 ## 🔄 Dual Pipeline Architecture
 
-### 🏢 investor-idn.com — IDX Corporate Action News
+### 🏢 investor-idn.com — Corporate Action News
 | Service | Schedule | Status |
 |---------|----------|--------|
-| **IDX Auto-News v4** | Every 2h (06:00-22:00 WIB) | ✅ Active |
-| **Style** | Formal, human tone, KBBI/EYD | KPIG-style structure |
-| **Author** | Tiara Reca (ID 4) | — |
-| **Image** | Pexels → Pixabay → Openverse | ✅ 3-tier fallback |
+| **IDX Auto-News v4** | `0 6-22/2 * * *` | ✅ LLM‑written KPIG articles |
+| **Foreign News Pipeline** | `45 7,19 * * *` | ✅ Bloomberg/Reuters/FT → IDX filter |
+| **Indexing Pipeline** | `15 1,9,17 * * *` | ✅ IndexNow + Google Blogsearch |
+| **Style** | Formal KPIG Pro — Headline CNBC+Kompas+Kontan | ✅ v4 skill file |
+| **Author** | Tiara Reca (ID 4) | Fixed |
+| **Image** | Pexels `src["large"]` → Pixabay → Openverse | ✅ 3-tier fallback |
+| **Categories** | Trending(1) + Company(77)/Market(76)/Event(80)/International(79)/Sustainability(78) | Fixed IDs |
 
 ### 📱 aksarabaru.com — Gen Z News
 | Service | Schedule | Status |
 |---------|----------|--------|
-| **Aksarabaru Auto-News** | Every hour (`30 * * * *`) | ✅ Active |
-| **Categories** | 7 rotating (Bisnis, Hiburan, Otomotif, Kuliner, Sosial Media, Olahraga, Teknologi) | ✅ |
-| **Style** | Gen Z journalist — Inverted Pyramid | ✅ v2 framework |
-| **Author** | Quill Queen (ID 12) | — |
-| **Image** | None (no featured image) | ✅ |
-| **SEO** | Auto excerpt + tags from publish script v2 | ✅ |
+| **Aksarabaru Auto-News** | `30 * * * *` (every hour) | ✅ V2 cron |
+| **Aksarabaru Indexing** | `50 */4 * * *` | ✅ Google + Bing + Yandex |
+| **Categories** | 7 rotating (Bisnis, Hiburan, Otomotif, Kuliner, Sosial Media, Olahraga, Teknologi) | ✅ Fixed IDs |
+| **Style** | Gen Z journalist — Inverted Pyramid v2 | ✅ Skill file v2 |
+| **Author** | Quill Queen (ID 12) | Fixed |
+| **Image** | None (text-only) | ✅ |
+| **SEO** | Auto excerpt (title) + tags | ✅ |
 | **Filters** | Negative content skip, 2026+ only, dedup by topic similarity | ✅ |
 
-### 🔄 Other Services
+### 🔄 System Services
 | Service | Schedule | Status |
 |---------|----------|--------|
-| Self-Improve | Every 6h | ✅ Active |
-| Daily Memory Update | Daily 07:00 | ✅ Active |
-| System Maintenance | Every 12h | ✅ Active |
-| Autonomous Health | Every 6h | ✅ Active |
-| Resilience Heal | Every 6h | ✅ Active |
-| Self-Evolve | Weekly (Sun 03:00) | ✅ Active |
+| Self-Improve | `10 */6 * * *` | ✅ |
+| Daily Memory Update | `0 7 * * *` | ✅ |
+| System Maintenance | Every 12h (manual) | ✅ |
+| Quill Auto-Update | `20 */12 * * *` | ✅ |
+| Survival Mode | Continuous | ✅ L1 |
+
+## 📋 Cron Schedule (Zero Clashes)
+
+| Time | Job | Minute |
+|:----:|-----|:------:|
+| Even hours 06-22 | IDX Auto-News v4 | `:00` |
+| 07:00 daily | HEARTBEAT Daily Memory | `:00` (07 only) |
+| Every 6h | HEARTBEAT Self-Improve | `:10` |
+| 01/09/17 daily | Indexing Pipeline | `:15` |
+| Every 12h | Quill Auto-Update | `:20` |
+| **Every hour** | **Aksarabaru Auto-News** | **`:30`** |
+| 07:45 & 19:45 daily | Foreign News Pipeline | `:45` |
+| Every 4h | Aksarabaru Indexing | `:50` |
 
 ## 🆕 Multi-Agent System
 
@@ -73,92 +94,69 @@ Quill (Leader — LLM) ──→ Agent Workers (0 token, subprocess)
 ```
 
 **Penghematan token:** Semua agent worker jalan via subprocess, 0 LLM token.  
-**Saya (Quill) pakai LLM hanya untuk nulis berita dan refine.**
+**LLM writing** via `qwenpaw agents chat` (internal API, bypasses expired Sumopod key).
 
-## 🆕 Auto-News Pipeline (v4)
+## 🔄 Pipeline Architecture
 
+### IDX Auto-News v4 (LLM-Powered)
 ```
-Angka ➡️
-Fetch IDX API (240 items, 3 detik)
-  ➡️ Filter relevansi (5-10 items)
-  ➡️ Cek state + WordPress dedup
-  ➡️ Enrich paralel (Tavily + Chroma)
-  ➡️ Publish draft ke WordPress
-  ➡️ Simpan state (tidak publish ulang)
-```
-
-Keunggulan:
-- Session management (seed main page → bypass Cloudflare)
-- WordPress dedup by emiten code (cek existing posts)
-- Parallel enrich via ThreadPoolExecutor
-- State + WP code tracking (tidak ada duplikasi)
-
-## 📱 Aksarabaru Pipeline
-
-Setiap jam:
-```
-Pipeline → tentukan kategori (jam % 7) → fetch RSS → filter 2026+ → 
-  filter negatif → skor → dedup (hash + topic similarity) → save pending →
-  Quill rewrite Inverted Pyramid 200 kata Gen Z → publish ke WP
+IDX API (240 items, 3s)
+  → Filter relevansi (5-10 items)
+  → Triple-layer dedup (content key → enriched_ids → WP post codes)
+  → Parallel enrich (Tavily + Chroma)
+  → Strip English → LLM writes KPIG article via qwenpaw agents chat
+  → 9 Defense Layers: clean text → LLM retry → quality gate → final cleanup
+  → Publish (status=publish) + featured image + stock code tags
 ```
 
-### Gen Z Writing Framework (v2)
-- **Inverted Pyramid**: LEAD1 (5W1H) → LEAD2 (relevansi) → DETAIL (fakta) → TAIL
-- **Anti-AI**: No passive voice, no uniform length, no repetition
-- **Quality Check**: 5-point score before publish (min score 4/5)
-- **Skill file**: `skills/aksara_writing/SKILL.md`
+### Aksarabaru Auto-News (Every Hour)
+```
+Pipeline (zero LLM) → tentukan kategori (HOUR % 7) → fetch RSS → 
+  filter 2026+ → filter negatif → skor → dedup → save pending →
+  Quill rewrite 200 kata Inverted Pyramid Gen Z → publish ke WP
+```
+
+### Foreign News Pipeline
+```
+Google News RSS (Bloomberg/Reuters/FT/CNBC/WSJ/BBC) → filter IDX stocks →
+  enhanced dedup (stock codes + EN-ID mapping) → save pending →
+  Quill rewrite 100% Bahasa Indonesia KPIG → publish Trending+International
+```
 
 ## 📁 Key Files
 
 ### IDX Pipeline (investor-idn.com)
-- `scripts/auto_news_pipeline.py` — Pipeline utama v4 (fetch → filter → enrich → WP)
-- `skills/quill_agents/agent_worker.py` — Multi-agent workers (5 agents, 0 LLM token)
+- `scripts/auto_news_pipeline.py` — **v4** — LLM writing, 9 defense layers, quality gate
+- `scripts/fetch_emitentrust.py` — EmitenTrust RSS → filter → pending
+- `scripts/publish_emitentrust.py` — Refined article bank → WP publish
+- `scripts/fetch_foreign_news.py` — Google News RSS → enhanced dedup → pending
+- `scripts/publish_foreign_news.py` — Foreign news → WP (bold + stock tags)
+- `scripts/indexing_pipeline.py` — IndexNow + Blogsearch + Ping-O-Matic
 - `scripts/idx_monitor_v4.py` — Fast fetch-only (240 items in ~3s)
 - `data/idx_action_state.json` — Deduplication state
-- `data/chroma_db/` — Vector DB for dedup
+- `skills/investor_writing/SKILL.md` — **v4** KPIG Pro Max (CNBC+Kompas+Kontan style)
+- `skills/quill_agents/agent_worker.py` — Multi-agent workers (5 agents, 0 LLM token)
 
-### Aksarabaru Pipeline (aksarabaru.com)
-- `scripts/aksarabaru_pipeline.py` — RSS fetch → filter → score → dedup → save pending (zero LLM)
-- `scripts/aksara_publish.py` — Publish script v2 with auto SEO excerpt + tags + validation
-- `skills/aksara_writing/SKILL.md` — Gen Z Journalist Writing Framework v2
+### Aksarabaru Pipeline
+- `scripts/aksarabaru_pipeline.py` — RSS fetch → filter → score → dedup → save pending
+- `scripts/aksara_publish.py` — **v3** — ensure_opening(), excerpt=title, auto tags
+- `scripts/aksara_indexing.py` — Push to Google+Bing+Yandex+Ping-O-Matic
+- `skills/aksara_writing/SKILL.md` — Gen Z Journalist Writing Framework **v2**
+- `GENZ_WRITING_GUIDE.md` — Gen Z writing quick reference
 - `data/aksarabaru_pending.json` — Pending articles queue
 - `data/aksarabaru_cache.json` — Published title cache (hash + text for topic dedup)
 
 ### System
 - `MEMORY.md` — Long-term memory
-- `GENZ_WRITING_GUIDE.md` — Gen Z writing quick reference
+- `PROFILE.md` — User profile (Andry)
+- `SOUL.md` — Identity & core preferences
 - `HEARTBEAT.md` — Periodic task instructions
-
-## 📝 Recent Articles
-
-### investor-idn.com (16+ articles)
-| Article | Status |
-|---------|--------|
-| TLKM Buyback Rp1T | ✅ Published |
-| KPIG Q1 Laba +55.8% | ✅ Published |
-| APLN Volatilitas 16% | ✅ Published |
-| BSDE Prapenjualan Rp2.54T | ✅ Published |
-| NUSA Suspensi Seluruh Pasar | ✅ Published |
-| INET Dirut & Komisaris Mundur | ✅ Published |
-| IBST Amankan Sub Limit Kredit Rp1T | ✅ Published |
-| SUPR Go Private Rp45.000 | ✅ Published |
-| HILL Saham Anjlok 66% PKPU | ✅ Published |
-| BOAT Tambah Kapal Baru US$22 Juta | ✅ Published |
-| NPGF Kontrak Rp217 Miliar | ✅ Published |
-
-### aksarabaru.com (8+ articles)
-| Article | Category | Status |
-|---------|----------|--------|
-| Pertalite Mulai Hilang dari SPBU? | Otomotif | ✅ Published |
-| Bansos Pangan Natuna | Kuliner | ✅ Published |
-| Earphone & Kesehatan Telinga | Kuliner | ✅ Published |
-| TikTok Platform Paling Populer 2026 | Sosial Media | ✅ Published |
-| #KaburAjaDulu Viral di Medsos | Sosial Media | ✅ Published |
-| Konten Viral RI Go International | Sosial Media | ✅ Published |
+- `survival/` — Survival mode (auto-heal, test_system.py)
+- `scripts/self_improve.py` — 6-hourly improvement check
 
 ## 🛡️ System Tests
 
-Last run: `8/8 tests passed` ✅
+Last run: **8/8 tests passed** ✅
 
 | Test | Status |
 |------|--------|
@@ -171,6 +169,14 @@ Last run: `8/8 tests passed` ✅
 | Log System | ✅ |
 | Failure Recovery | ✅ |
 
+### Survival Mode Levels
+| Level | Status | Description |
+|-------|--------|-------------|
+| L1 | ✅ | FULL operation — all systems go |
+| L2 | ✅ | DEGRADED — AI offline, workers only |
+| L3 | ✅ | EMERGENCY — cron-driven only |
+| L4 | ✅ | RECOVERY — pull from GitHub, restore state |
+
 ---
 
-*Last updated: 2026-05-09 11:00 WIB*
+*Last updated: 2026-05-13 11:20 WIB — Maintenance Cycle #12*
