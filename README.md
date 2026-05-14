@@ -10,16 +10,18 @@ Sistem monitoring keterbukaan informasi IDX dengan pipeline berita otomatis, ded
 | System | Status |
 |--------|--------|
 | **Level** | L1 (FULL Operation) |
-| **Disk** | 24% |
-| **Last Check** | 2026-05-13 11:20 WIB |
+| **Disk** | 25% |
+| **Last Check** | 2026-05-14 05:20 WIB |
 | **AI API** | ✅ OK (via internal `qwenpaw agents chat`) |
 | **IDX API** | ✅ OK (240 items in ~3s, Cloudflare bypass) |
-| **IDX Pipeline** | ✅ v4 — LLM‑powered KPIG articles + 9 defense layers |
+| **IDX Pipeline** | ✅ v4 — LLM‑powered KPIG + 3-layer title quality + image dedup |
 | **Aksarabaru Pipeline** | ✅ Every hour, 7 categories, Gen Z v2 framework |
 | **Foreign News Pipeline** | ✅ Daily 07:45 & 19:45, enhanced dedup |
 | **Indexing Pipeline** | ✅ Every 8h (IndexNow + Blogsearch + Ping-O-Matic) |
 | **Aksarabaru Indexing** | ✅ Every 4h (Google + Bing + Yandex) |
 | **Survival Mode** | ✅ 8/8 tests passed |
+| **Title Fix (investor-idn)** | ✅ 33 artikel template → SEO titles |
+| **Image Dedup** | ✅ Image hash cache + 3-keyword variants |
 
 ## 🧠 Capabilities
 
@@ -29,23 +31,25 @@ Sistem monitoring keterbukaan informasi IDX dengan pipeline berita otomatis, ded
 | **Scripts** | 45+ Python scripts |
 | **Docs** | 15 documentation files |
 | **Chroma Entries** | 1651+ |
-| **Articles (investor-idn)** | 50+ published |
-| **Articles (aksarabaru)** | 40+ published |
+| **Articles (investor-idn)** | 200+ published |
+| **Articles (aksarabaru)** | 100+ published |
 | **Multi-Agent Workers** | 5 (filter, tavily, chroma, html2text, format_news) |
 | **Cron Jobs** | 8 active (zero schedule clashes) |
+| **Template Titles Cleaned** | 33 (Batch 1: 11 + Batch 2: 22) |
 
 ## 🔄 Dual Pipeline Architecture
 
 ### 🏢 investor-idn.com — Corporate Action News
 | Service | Schedule | Status |
 |---------|----------|--------|
-| **IDX Auto-News v4** | `0 6-22/2 * * *` | ✅ LLM‑written KPIG articles |
+| **IDX Auto-News v4** | `0 6-22/2 * * *` | ✅ LLM‑written KPIG, title refine, image dedup |
 | **Foreign News Pipeline** | `45 7,19 * * *` | ✅ Bloomberg/Reuters/FT → IDX filter |
 | **Indexing Pipeline** | `15 1,9,17 * * *` | ✅ IndexNow + Google Blogsearch |
 | **Style** | Formal KPIG Pro — Headline CNBC+Kompas+Kontan | ✅ v4 skill file |
 | **Author** | Tiara Reca (ID 4) | Fixed |
-| **Image** | Pexels `src["large"]` → Pixabay → Openverse | ✅ 3-tier fallback |
+| **Image** | Pexels `src["large"]` → Pixabay | ✅ 3-variant keywords + hash dedup |
 | **Categories** | Trending(1) + Company(77)/Market(76)/Event(80)/International(79)/Sustainability(78) | Fixed IDs |
+| **Title Quality** | 3-layer: LLM initial → quality gate → refine from final content | ✅ New |
 
 ### 📱 aksarabaru.com — Gen Z News
 | Service | Schedule | Status |
@@ -64,7 +68,7 @@ Sistem monitoring keterbukaan informasi IDX dengan pipeline berita otomatis, ded
 |---------|----------|--------|
 | Self-Improve | `10 */6 * * *` | ✅ |
 | Daily Memory Update | `0 7 * * *` | ✅ |
-| System Maintenance | Every 12h (manual) | ✅ |
+| System Maintenance | Every 12h | ✅ |
 | Quill Auto-Update | `20 */12 * * *` | ✅ |
 | Survival Mode | Continuous | ✅ L1 |
 
@@ -104,8 +108,10 @@ IDX API (240 items, 3s)
   → Filter relevansi (5-10 items)
   → Triple-layer dedup (content key → enriched_ids → WP post codes)
   → Parallel enrich (Tavily + Chroma)
-  → Strip English → LLM writes KPIG article via qwenpaw agents chat
+  → Strip English → LLM writes KPIG article + <TITLE> via qwenpaw agents chat
   → 9 Defense Layers: clean text → LLM retry → quality gate → final cleanup
+  → Refine title from final article content (post-QC)
+  → Image: 3-variant keywords + hash dedup
   → Publish (status=publish) + featured image + stock code tags
 ```
 
@@ -126,7 +132,7 @@ Google News RSS (Bloomberg/Reuters/FT/CNBC/WSJ/BBC) → filter IDX stocks →
 ## 📁 Key Files
 
 ### IDX Pipeline (investor-idn.com)
-- `scripts/auto_news_pipeline.py` — **v4** — LLM writing, 9 defense layers, quality gate
+- `scripts/auto_news_pipeline.py` — **v4** — LLM writing + 3-layer title quality + image hash dedup
 - `scripts/fetch_emitentrust.py` — EmitenTrust RSS → filter → pending
 - `scripts/publish_emitentrust.py` — Refined article bank → WP publish
 - `scripts/fetch_foreign_news.py` — Google News RSS → enhanced dedup → pending
@@ -179,4 +185,4 @@ Last run: **8/8 tests passed** ✅
 
 ---
 
-*Last updated: 2026-05-13 11:20 WIB — Maintenance Cycle #12*
+*Last updated: 2026-05-14 05:20 WIB — Maintenance Cycle #13*
