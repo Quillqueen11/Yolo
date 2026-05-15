@@ -10,8 +10,8 @@ Sistem monitoring keterbukaan informasi IDX dengan pipeline berita otomatis, ded
 | System | Status |
 |--------|--------|
 | **Level** | L1 (FULL Operation) |
-| **Disk** | 20% |
-| **Last Check** | 2026-05-08 17:00 WIB |
+| **Disk** | 26% |
+| **Last Check** | 2026-05-15 12:00 WIB |
 | **AI API** | ✅ OK |
 | **Pipeline** | ✅ v4 (240 items in 3s) |
 
@@ -94,6 +94,10 @@ Keunggulan:
 | HILL Saham Anjlok 66% PKPU | ✅ Published |
 | BOAT Tambah Kapal Baru US$22 Juta | ✅ Published |
 | NPGF Kontrak Rp217 Miliar | ✅ Published |
+| MAPI Pacific Universal Akuisisi 51% | ✅ Published |
+| RATU Dividen Rp122,17 M | ✅ Published |
+| PACK Pemegang Saham Baru Borong | ✅ Published |
+| LKH Borong 5,2 Juta Saham DILD | ✅ Published |
 
 ## 🛡️ System Tests
 
@@ -112,4 +116,5 @@ Last run: `8/8 tests passed` ✅
 
 ---
 
-*Last updated: 2026-05-08 17:00 WIB*
+*Last updated: 2026-05-15 12:20 WIB*
+
