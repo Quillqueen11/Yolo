@@ -11,7 +11,7 @@ Sistem monitoring keterbukaan informasi IDX dengan pipeline berita otomatis, ded
 |--------|--------|
 | **Level** | L1 (FULL Operation) |
 | **Disk** | 26% |
-| **Last Check** | 2026-05-15 12:00 WIB |
+| **Last Check** | 2026-05-17 12:20 WIB |
 | **AI API** | ✅ OK |
 | **Pipeline** | ✅ v4 (240 items in 3s) |
 
@@ -24,6 +24,7 @@ Sistem monitoring keterbukaan informasi IDX dengan pipeline berita otomatis, ded
 | **Docs** | 14 documentation files |
 | **Chroma Entries** | 1651+ |
 | **News Articles** | 15+ published |
+| **SCPI Covered** | ✅ Go Private Rp29.000 |
 | **Multi-Agent Workers** | 5 (filter, tavily, chroma, html2text, format_news) |
 
 ## 🔄 Running Services
@@ -101,7 +102,7 @@ Keunggulan:
 
 ## 🛡️ System Tests
 
-Last run: `8/8 tests passed` ✅
+Last run: `8/8 tests passed` ✅ (2026-05-17 12:20 WIB)
 
 | Test | Status |
 |------|--------|
@@ -116,5 +117,5 @@ Last run: `8/8 tests passed` ✅
 
 ---
 
-*Last updated: 2026-05-15 12:20 WIB*
+*Last updated: 2026-05-17 12:20 WIB*
 
