@@ -11,7 +11,7 @@ Sistem monitoring keterbukaan informasi IDX dengan pipeline berita otomatis, ded
 |--------|--------|
 | **Level** | L1 (FULL Operation) |
 | **Disk** | 25% |
-| **Last Check** | 2026-05-14 05:20 WIB |
+| **Last Check** | 2026-05-22 17:20 WIB |
 | **AI API** | ✅ OK (via internal `qwenpaw agents chat`) |
 | **IDX API** | ✅ OK (240 items in ~3s, Cloudflare bypass) |
 | **IDX Pipeline** | ✅ v4 — LLM‑powered KPIG + 3-layer title quality + image dedup |
@@ -31,8 +31,8 @@ Sistem monitoring keterbukaan informasi IDX dengan pipeline berita otomatis, ded
 | **Scripts** | 45+ Python scripts |
 | **Docs** | 15 documentation files |
 | **Chroma Entries** | 1651+ |
-| **Articles (investor-idn)** | 200+ published |
-| **Articles (aksarabaru)** | 100+ published |
+| **Articles (investor-idn)** | 300+ published |
+| **Articles (aksarabaru)** | 200+ published |
 | **Multi-Agent Workers** | 5 (filter, tavily, chroma, html2text, format_news) |
 | **Cron Jobs** | 8 active (zero schedule clashes) |
 | **Template Titles Cleaned** | 33 (Batch 1: 11 + Batch 2: 22) |

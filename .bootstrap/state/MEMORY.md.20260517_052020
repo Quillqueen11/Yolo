@@ -12,7 +12,6 @@
 - API: Sumopod (`https://ai.sumopod.com`, model `glm-5.1`)
 - Tavily: ✅, Pexels: ✅, Pixabay: ✅
 - Python: `/app/venv`, Node: v25.6.0
-- curl_cffi: v0.15.0 (installed via `/app/venv/bin/pip`)
 
 ## WordPress
 
@@ -43,7 +42,6 @@ Fetch 240 (3s) → Filter → Triple dedup → Parallel enrich (Tavily+Chroma) �
 - Image: 3 keyword variants + `used_image_hashes` state dedup
 - Author: Tiara Reca (ID 4), cats: CATEGORY_MAP + Trending(1)
 - Script: `scripts/auto_news_pipeline.py`
-- **Timeout**: 600s insufficient; requires >1200s or async strategy for fetch/write stages
 
 ### Aksarabaru Auto-News
 - Scripts: `scripts/aksarabaru_pipeline.py` (fetch) → `scripts/aksara_publish.py` (publish via LLM)
@@ -85,7 +83,3 @@ subprocess.run(["qwenpaw","agents","chat","--from-agent","default","--to-agent",
 
 ## Source Notes
 - **EmitenNews.com**: ✅ Full content accessible via `requests`, inline ads only. Usable for investor-idn sourcing.
-
-## Pipeline Reliability
-- **IDX pipeline timeout** (>600s) recurring; caused by slow fetch/write stages — extend timeout or refactor to async
-- curl_cffi version must stay compatible with installed v0.15.0 after reinstall
