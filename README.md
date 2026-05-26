@@ -10,8 +10,8 @@ Sistem monitoring keterbukaan informasi IDX dengan pipeline berita otomatis, ded
 | System | Status |
 |--------|--------|
 | **Level** | L1 (FULL Operation) |
-| **Disk** | 25% |
-| **Last Check** | 2026-05-22 17:20 WIB |
+| **Disk** | 28% |
+| **Last Check** | 2026-05-26 05:20 WIB |
 | **AI API** | ✅ OK (via internal `qwenpaw agents chat`) |
 | **IDX API** | ✅ OK (240 items in ~3s, Cloudflare bypass) |
 | **IDX Pipeline** | ✅ v4 — LLM‑powered KPIG + 3-layer title quality + image dedup |

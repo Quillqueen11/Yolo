@@ -1,0 +1,91 @@
+# MEMORY — Long-term memory for Quill
+
+## Identity & Core Preferences
+- Name: Quill (AI assistant), User: Andry
+- Communication: Indonesian, direct, concise (≤3 sentences), no filler, answer first
+- Style: Super smart, efficient | Timezone: Asia/Jakarta
+- Autonomy: ✅ Full approval to write/rewrite any code independently
+- User sends requests in **layers** → ack first, execute sequentially
+- Reports: **structured Markdown tables**
+
+## Technical Configuration
+- API: Sumopod (`https://ai.sumopod.com`, model `glm-5.1`)
+- Tavily: ✅, Pexels: ✅, Pixabay: ✅
+- Python: `/app/venv`, Node: v25.6.0
+- curl_cffi: v0.15.0 (installed via `/app/venv/bin/pip`)
+
+## WordPress
+
+### investor-idn.com
+- URL: `https://investor-idn.com`, User: andryantoen, AppPass: `EHzO sFrX VSBM ZjLD i3XP xn4X`
+- Categories: Trending(1) + 1 of (Company-77, Market-76, Event-80, Intl-79, Sustain-78)
+- Skip: structured warrant articles | Tracked emiten: APIC, ASII, BEI, BEKS, BKSL, BOAT, BULL, BUMI, COIN, EMAS, HILL, IBST, INET, NPGF, SMIL, SUPR
+
+### aksarabaru.com
+- URL: `https://aksarabaru.com`, User: Quill Queen (ID 12), Password: Langsung123
+- 7 categories: Bisnis(3), Hiburan(6), Otomotif(7), Kuliner(5), Sosial Media(4), Olahraga(8), Teknologi(10)
+- Writing: 200 words, Gen Z, conversational ID — `GENZ_WRITING_GUIDE.md`
+- Rotation: HOUR % 7 | Format: `<p>Jakarta, aksarabaru.com – [LEAD 5W1H].</p>`
+- **KONTEN NEGATIF DILARANG**: cerai, selingkuh, isu sensasi artis, politik, kriminal, perang, isu sensitif
+- Dedup: Jaccard 0.30 + stem | Author: Quill Queen (ID 12) | No featured image
+
+## IDX API & Cloudflare
+- Base: `https://www.idx.co.id/primary/`
+- Auth: `curl_cffi` impersonate="chrome"; seed main page first
+- Filter: EXCLUDE routine; INCLUDE board changes, dividends, buybacks, PKPU
+
+## Pipelines
+
+### IDX Auto-News (investor-idn.com) — v4
+Fetch 240 (3s) → Filter → Triple dedup → Parallel enrich (Tavily+Chroma) → Image (Pexels→Pixabay) → LLM write → WP publish
+- Writing: KPIG (lead angka → konteks → detail → profil → prospek), KBBI/EYD, human tone
+- Title: 3-layer LLM gen + `refine_title_with_llm()` post-process
+- Image: 3 keyword variants + `used_image_hashes` state dedup
+- Author: Tiara Reca (ID 4), cats: CATEGORY_MAP + Trending(1)
+- Script: `scripts/auto_news_pipeline.py`
+- **Timeout**: 600s insufficient; requires >1200s or async strategy for fetch/write stages
+
+### Aksarabaru Auto-News
+- Scripts: `scripts/aksarabaru_pipeline.py` (fetch) → `scripts/aksara_publish.py` (publish via LLM)
+- CATEGORY_EXCLUDE per category | Self-assign category on mismatch
+- TOP 2 candidates: 2 topics per slot, `pop_candidate()` per publish
+
+## Subprocess LLM Access
+```python
+subprocess.run(["qwenpaw","agents","chat","--from-agent","default","--to-agent","default","--text",prompt], capture_output=True, text=True, timeout=120)
+```
+
+## Constraints
+- curl_cffi: no `files=` for multipart → use `requests` for WP media upload
+- Cloudflare: session management with curl_cffi
+- Long pipelines: ack first; sequential execution if stacked
+
+## Cron Jobs (9, Asia/Jakarta)
+| Job | Schedule |
+|-----|----------|
+| IDX Auto-News v4 | `0 6-22/2 * * *` |
+| HEARTBEAT Daily Memory | `0 7 * * *` |
+| HEARTBEAT Self-Improve | `10 */6 * * *` |
+| Indexing Pipeline | `15 1,9,17 * * *` |
+| Quill Auto-Update | `20 */12 * * *` |
+| Aksarabaru Auto-News | `30 * * * *` |
+| Foreign News Pipeline | `45 7,19 * * *` |
+| Aksarabaru Indexing | `50 */4 * * *` |
+| Google Trends Scraper | `15 */6 * * *` |
+
+## Writing Style — KRITIS!
+- **investor-idn.com**: Formal, KBBI/EYD, KPIG struktur
+- **aksarabaru.com**: Gen Z, santai, inverted pyramid
+
+## Quality Fix Protocol
+1. Diagnose root cause in pipeline code
+2. Fix pipeline code for future
+3. Fix past articles manually (~1 per 60s LLM cooldown)
+4. Hash dedup for images across batches
+
+## Source Notes
+- **EmitenNews.com**: ✅ Full content accessible via `requests`, inline ads only. Usable for investor-idn sourcing.
+
+## Pipeline Reliability
+- **IDX pipeline timeout** (>600s) recurring; caused by slow fetch/write stages — extend timeout or refactor to async
+- curl_cffi version must stay compatible with installed v0.15.0 after reinstall
